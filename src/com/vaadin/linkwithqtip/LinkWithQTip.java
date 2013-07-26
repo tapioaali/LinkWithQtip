@@ -2,15 +2,18 @@ package com.vaadin.linkwithqtip;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import com.vaadin.annotations.JavaScript;
-import com.vaadin.linkwithqtip.client.LinkQTipOpenedRpc;
+import com.vaadin.annotations.StyleSheet;
 import com.vaadin.linkwithqtip.client.LinkWithQTipState;
-import com.vaadin.linkwithqtip.client.ToggleQTipRpc;
-import com.vaadin.linkwithqtip.events.LinkQTipOpenedListener;
 import com.vaadin.ui.AbstractJavaScriptComponent;
+import com.vaadin.ui.JavaScriptFunction;
 
 @JavaScript({ "client/jquery-1.10.1.min.js", "client/jquery.linkqtip.js",
         "client/linkwithqtip_connector.js" })
+@StyleSheet("vaadin://jquery.linkqtip-styles.css")
 public class LinkWithQTip extends AbstractJavaScriptComponent {
 
     private ArrayList<LinkQTipOpenedListener> listeners = new ArrayList<LinkQTipOpenedListener>();
@@ -18,9 +21,9 @@ public class LinkWithQTip extends AbstractJavaScriptComponent {
     public LinkWithQTip(String url, String text) {
         getState().url = url;
         getState().text = text;
-        registerRpc(new LinkQTipOpenedRpc() {
+        addFunction("onLinkQTipOpened", new JavaScriptFunction() {
             @Override
-            public void onLinkQTipOpened() {
+            public void call(JSONArray arguments) throws JSONException {
                 for (LinkQTipOpenedListener listener : listeners) {
                     listener.qTipOpened();
                 }
@@ -42,6 +45,6 @@ public class LinkWithQTip extends AbstractJavaScriptComponent {
     }
 
     public void toggleQTip() {
-        getRpcProxy(ToggleQTipRpc.class).toggle();
+        callFunction("toggle");
     }
 }

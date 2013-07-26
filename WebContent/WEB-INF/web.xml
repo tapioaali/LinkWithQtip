@@ -20,7 +20,7 @@
 			<description>
 			Application widgetset</description>
 			<param-name>widgetset</param-name>
-			<param-value>com.vaadin.linkwithqtip.LinkWithQTipWidgetset</param-value>
+			<param-value>com.vaadin.DefaultWidgetSet</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>

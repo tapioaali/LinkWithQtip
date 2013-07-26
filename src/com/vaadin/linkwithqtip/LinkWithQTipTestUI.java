@@ -1,7 +1,6 @@
 package com.vaadin.linkwithqtip;
 
 import com.vaadin.annotations.Theme;
-import com.vaadin.linkwithqtip.events.LinkQTipOpenedListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -12,7 +11,7 @@ import com.vaadin.ui.VerticalLayout;
 /**
  * Main UI class
  */
-@Theme("linkqtiptheme")
+@Theme("reindeer")
 @SuppressWarnings("serial")
 public class LinkWithQTipTestUI extends UI {
 

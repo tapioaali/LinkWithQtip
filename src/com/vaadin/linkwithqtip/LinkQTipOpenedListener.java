@@ -1,4 +1,4 @@
-package com.vaadin.linkwithqtip.events;
+package com.vaadin.linkwithqtip;
 
 import java.io.Serializable;
 

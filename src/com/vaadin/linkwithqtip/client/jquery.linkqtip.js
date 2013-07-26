@@ -10,8 +10,7 @@
         };
 
         var qtip = this;
-        var div = null;
-		var toggled = false;       
+        var div = null;    
         qtip.settings = {};
 
         qtip.init = function() {
@@ -19,22 +18,18 @@
             $(element).hover(showQTip, hideQTip);        
         };
 
-        // public function
         qtip.toggle = function() {
-            if(toggled) {
-				toggled = false;
+            if(div != null) {
                 hideQTip();
             } else {
                 showQTip();
-				toggled = true;
             }
         };
         
-        // private functions
         var showQTip = function() {
-			if(toggled) {
-				return;
-			}
+            if(div != null) {
+                return;
+            }
             var o = qtip.settings;
             var topPosition = $(element).offset().top + o.offsetTop;
             var leftPosition = $(element).offset().left + $(element).width() + o.offsetLeft;
@@ -56,10 +51,8 @@
         };
         
         var hideQTip = function() {
-			if(!toggled) {
-				$(div).remove();
-				div = null;
-			}
+            $(div).remove();
+            div = null;
         };
        
         qtip.init();
